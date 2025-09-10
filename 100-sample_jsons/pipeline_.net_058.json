@@ -1,0 +1,85 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.965197+00:00",
+    "stack": ".net",
+    "language": "dotnet",
+    "build_tool": "dotnet"
+  },
+  "application": {
+    "name": ".net-jqykj",
+    "repository": {
+      "url": "git@example.com:repo-6zmx5.git",
+      "default_branch": "main"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "main"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 0,
+      "timeout_minutes": 15,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "restore",
+          "run": "dotnet restore"
+        },
+        {
+          "name": "build",
+          "run": "dotnet build --no-restore -c Release"
+        },
+        {
+          "name": "test",
+          "run": "dotnet test --no-build --verbosity normal"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "rolling"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT"
+    ],
+    "security_scans": {
+      "sast": false,
+      "sca": false,
+      "dast": false
+    }
+  }
+}

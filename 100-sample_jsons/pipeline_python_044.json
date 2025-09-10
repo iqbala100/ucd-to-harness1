@@ -1,0 +1,85 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.926915+00:00",
+    "stack": "python",
+    "language": "python",
+    "build_tool": "pip"
+  },
+  "application": {
+    "name": "python-bzkv1",
+    "repository": {
+      "url": "git@example.com:repo-eiklh.git",
+      "default_branch": "release/1.0"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "release/1.0"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 2,
+      "timeout_minutes": 15,
+      "notify_on_failure": false
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "setup-venv",
+          "run": "python -m venv .venv && . .venv/bin/activate && pip install -U pip"
+        },
+        {
+          "name": "install",
+          "run": "pip install -r requirements.txt || true"
+        },
+        {
+          "name": "test",
+          "run": "pytest -q || true"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "blue-green"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": true,
+      "dast": false
+    }
+  }
+}

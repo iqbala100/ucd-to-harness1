@@ -1,0 +1,92 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.984696+00:00",
+    "stack": "terraform",
+    "language": "terraform",
+    "build_tool": "terraform"
+  },
+  "application": {
+    "name": "terraform-r92qv",
+    "repository": {
+      "url": "git@example.com:repo-zjp6i.git",
+      "default_branch": "release/1.0"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "release/1.0",
+          "feature/x"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 1,
+      "timeout_minutes": 15,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "fmt",
+          "run": "terraform fmt -check"
+        },
+        {
+          "name": "init",
+          "run": "terraform init -backend=false"
+        },
+        {
+          "name": "validate",
+          "run": "terraform validate"
+        },
+        {
+          "name": "plan",
+          "run": "terraform plan -input=false -lock=false"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "none"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT",
+      "BSD-3-Clause",
+      "Apache-2.0"
+    ],
+    "security_scans": {
+      "sast": false,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

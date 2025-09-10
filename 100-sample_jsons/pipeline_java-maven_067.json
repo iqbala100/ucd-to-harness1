@@ -1,0 +1,88 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.989235+00:00",
+    "stack": "java-maven",
+    "language": "java",
+    "build_tool": "maven"
+  },
+  "application": {
+    "name": "java-maven-v3n92",
+    "repository": {
+      "url": "git@example.com:repo-a097v.git",
+      "default_branch": "develop"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "develop",
+          "main",
+          "hotfix/y"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 2,
+      "timeout_minutes": 15,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "clean",
+          "run": "mvn -B -ntp clean"
+        },
+        {
+          "name": "compile",
+          "run": "mvn -B -ntp -DskipTests package"
+        },
+        {
+          "name": "test",
+          "run": "mvn -B -ntp test"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "canary"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "Apache-2.0",
+      "MIT"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": true,
+      "dast": true
+    }
+  }
+}

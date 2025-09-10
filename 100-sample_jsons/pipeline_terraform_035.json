@@ -1,0 +1,89 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.901795+00:00",
+    "stack": "terraform",
+    "language": "terraform",
+    "build_tool": "terraform"
+  },
+  "application": {
+    "name": "terraform-yhxnb",
+    "repository": {
+      "url": "git@example.com:repo-7g5ux.git",
+      "default_branch": "develop"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "develop"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 0,
+      "timeout_minutes": 45,
+      "notify_on_failure": false
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "fmt",
+          "run": "terraform fmt -check"
+        },
+        {
+          "name": "init",
+          "run": "terraform init -backend=false"
+        },
+        {
+          "name": "validate",
+          "run": "terraform validate"
+        },
+        {
+          "name": "plan",
+          "run": "terraform plan -input=false -lock=false"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "canary"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": true,
+      "dast": true
+    }
+  }
+}

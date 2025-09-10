@@ -1,0 +1,87 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.828541+00:00",
+    "stack": "java-gradle",
+    "language": "java",
+    "build_tool": "gradle"
+  },
+  "application": {
+    "name": "java-gradle-vj5t4",
+    "repository": {
+      "url": "git@example.com:repo-ledyg.git",
+      "default_branch": "hotfix/y"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "hotfix/y",
+          "develop"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 2,
+      "timeout_minutes": 15,
+      "notify_on_failure": false
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "clean",
+          "run": "./gradlew clean"
+        },
+        {
+          "name": "build",
+          "run": "./gradlew build -x test"
+        },
+        {
+          "name": "test",
+          "run": "./gradlew test"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "canary"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT",
+      "Apache-2.0"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

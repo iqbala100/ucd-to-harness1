@@ -1,0 +1,87 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:38.031956+00:00",
+    "stack": "python",
+    "language": "python",
+    "build_tool": "pip"
+  },
+  "application": {
+    "name": "python-lm33x",
+    "repository": {
+      "url": "git@example.com:repo-kg2y0.git",
+      "default_branch": "hotfix/y"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "hotfix/y",
+          "develop",
+          "main"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 2,
+      "timeout_minutes": 15,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "setup-venv",
+          "run": "python -m venv .venv && . .venv/bin/activate && pip install -U pip"
+        },
+        {
+          "name": "install",
+          "run": "pip install -r requirements.txt || true"
+        },
+        {
+          "name": "test",
+          "run": "pytest -q || true"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "none"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "Apache-2.0"
+    ],
+    "security_scans": {
+      "sast": false,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:38.038472+00:00",
+    "stack": "java-gradle",
+    "language": "java",
+    "build_tool": "gradle"
+  },
+  "application": {
+    "name": "java-gradle-y5g1g",
+    "repository": {
+      "url": "git@example.com:repo-l8yht.git",
+      "default_branch": "release/1.0"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "release/1.0",
+          "main",
+          "feature/x"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 0,
+      "timeout_minutes": 45,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "clean",
+          "run": "./gradlew clean"
+        },
+        {
+          "name": "build",
+          "run": "./gradlew build -x test"
+        },
+        {
+          "name": "test",
+          "run": "./gradlew test"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "rolling"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "BSD-3-Clause",
+      "MIT",
+      "Apache-2.0"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

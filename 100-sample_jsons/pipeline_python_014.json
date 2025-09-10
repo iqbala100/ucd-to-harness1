@@ -1,0 +1,88 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.849530+00:00",
+    "stack": "python",
+    "language": "python",
+    "build_tool": "pip"
+  },
+  "application": {
+    "name": "python-fjdo4",
+    "repository": {
+      "url": "git@example.com:repo-gumab.git",
+      "default_branch": "develop"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "develop",
+          "hotfix/y",
+          "feature/x"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 1,
+      "timeout_minutes": 30,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "setup-venv",
+          "run": "python -m venv .venv && . .venv/bin/activate && pip install -U pip"
+        },
+        {
+          "name": "install",
+          "run": "pip install -r requirements.txt || true"
+        },
+        {
+          "name": "test",
+          "run": "pytest -q || true"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "rolling"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "MIT",
+      "BSD-3-Clause"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

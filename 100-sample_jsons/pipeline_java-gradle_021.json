@@ -1,0 +1,88 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.871906+00:00",
+    "stack": "java-gradle",
+    "language": "java",
+    "build_tool": "gradle"
+  },
+  "application": {
+    "name": "java-gradle-llp5d",
+    "repository": {
+      "url": "git@example.com:repo-b6wpj.git",
+      "default_branch": "hotfix/y"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "hotfix/y",
+          "release/1.0",
+          "main"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 1,
+      "timeout_minutes": 45,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "clean",
+          "run": "./gradlew clean"
+        },
+        {
+          "name": "build",
+          "run": "./gradlew build -x test"
+        },
+        {
+          "name": "test",
+          "run": "./gradlew test"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "none"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "BSD-3-Clause",
+      "MIT"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": false,
+      "dast": true
+    }
+  }
+}

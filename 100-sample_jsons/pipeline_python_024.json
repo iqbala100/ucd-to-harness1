@@ -1,0 +1,86 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:37.877425+00:00",
+    "stack": "python",
+    "language": "python",
+    "build_tool": "pip"
+  },
+  "application": {
+    "name": "python-v1qic",
+    "repository": {
+      "url": "git@example.com:repo-er20o.git",
+      "default_branch": "main"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "main",
+          "release/1.0"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 1,
+      "timeout_minutes": 15,
+      "notify_on_failure": true
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "setup-venv",
+          "run": "python -m venv .venv && . .venv/bin/activate && pip install -U pip"
+        },
+        {
+          "name": "install",
+          "run": "pip install -r requirements.txt || true"
+        },
+        {
+          "name": "test",
+          "run": "pytest -q || true"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "canary"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "BSD-3-Clause"
+    ],
+    "security_scans": {
+      "sast": false,
+      "sca": true,
+      "dast": true
+    }
+  }
+}

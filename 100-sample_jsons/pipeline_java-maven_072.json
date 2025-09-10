@@ -1,0 +1,86 @@
+{
+  "ucd_schema_version": "1.0",
+  "metadata": {
+    "generated_at": "2025-09-10T15:04:38.000789+00:00",
+    "stack": "java-maven",
+    "language": "java",
+    "build_tool": "maven"
+  },
+  "application": {
+    "name": "java-maven-tsil9",
+    "repository": {
+      "url": "git@example.com:repo-vd71p.git",
+      "default_branch": "hotfix/y"
+    }
+  },
+  "ci": {
+    "triggers": [
+      {
+        "type": "push",
+        "branches": [
+          "hotfix/y",
+          "develop"
+        ]
+      },
+      {
+        "type": "manual",
+        "roles": [
+          "developer",
+          "release-manager"
+        ]
+      }
+    ],
+    "parameters": {
+      "retries": 1,
+      "timeout_minutes": 45,
+      "notify_on_failure": false
+    }
+  },
+  "stages": [
+    {
+      "name": "build",
+      "steps": [
+        {
+          "name": "clean",
+          "run": "mvn -B -ntp clean"
+        },
+        {
+          "name": "compile",
+          "run": "mvn -B -ntp -DskipTests package"
+        },
+        {
+          "name": "test",
+          "run": "mvn -B -ntp test"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "environments": [
+        {
+          "name": "dev",
+          "approval_required": false
+        },
+        {
+          "name": "qa",
+          "approval_required": true
+        },
+        {
+          "name": "prod",
+          "approval_required": true
+        }
+      ],
+      "strategy": "blue-green"
+    }
+  ],
+  "compliance": {
+    "licenses": [
+      "BSD-3-Clause"
+    ],
+    "security_scans": {
+      "sast": true,
+      "sca": false,
+      "dast": true
+    }
+  }
+}
