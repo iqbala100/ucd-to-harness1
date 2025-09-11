@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "export_date": "2025-09-10T17:26:44.710878+00:00",
+    "tool_version": "1.0",
+    "total_applications": 1
+  },
+  "applications": [
+    {
+      "application": {
+        "id": "7cac9643-8d37-48ff-acfd-350698643a64",
+        "securityResourceId": "980060d0-052b-4b2e-a181-6393504c475f",
+        "name": "Javahosting Nitro Application Test phbce",
+        "created": 1757525204467,
+        "enforceCompleteSnapshots": false,
+        "active": true,
+        "tags": [
+          {
+            "id": "5346a680-cde0-42cb-a051-6711e613240b",
+            "name": "criticality:critical",
+            "color": "#D9182D",
+            "objectType": "Application"
+          },
+          {
+            "id": "33cee3e1-e36f-4370-98ab-ffdfd48c7697",
+            "name": "regulated:false",
+            "color": "#D9182D",
+            "objectType": "Application"
+          }
+        ],
+        "deleted": false,
+        "templateVersion": -1,
+        "templateId": "f0c0eb18-7ae5-4191-9a59-6f323888501b",
+        "onlyChangedVersions": true,
+        "useWizard": false,
+        "user": "suranc1"
+      },
+      "components": [
+        {
+          "id": "85f71d1f-1298-46b0-86c8-8ddb03b35ff9",
+          "securityResourceId": "76a7815b-80fb-45d3-8ae5-922b45c20186",
+          "name": "Nitro_App",
+          "created": 1757525204467,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "b389d82a-b873-4c4a-ab5a-925e37dc24c3",
+              "name": "Nitro_App",
+              "color": "#0047BB",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "66ebbc0a-1385-4914-a756-6b2c42dbad65",
+              "name": "Nitro_App",
+              "color": "#FFCF01",
+              "objectType": "Component"
+            }
+          ],
+          "user": "suranc1"
+        },
+        {
+          "id": "b8fe7b9d-0607-4ced-b958-7ef67fe5d334",
+          "securityResourceId": "f8fcfddb-aa48-4e12-b636-f31d64a5bf69",
+          "name": "Nitro_Property",
+          "created": 1757525204467,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "fd5c63f4-8730-41c6-98d5-5eaf853efa48",
+              "name": "Nitro_Property",
+              "color": "#D9182D",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "e40eedb5-9c43-40d3-8b4b-a698cbb7272f",
+              "name": "Nitro_Property",
+              "color": "#DD731C",
+              "objectType": "Component"
+            }
+          ],
+          "user": "salvs34 (sarnoj1)"
+        },
+        {
+          "id": "9437fd38-5ba7-43cd-9b6c-e27b95715b93",
+          "securityResourceId": "c7344827-2c45-4fc5-acf5-be252cad469e",
+          "name": "Nitro_Zero_Downtime",
+          "created": 1757525204467,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "73f17267-6a04-4e72-af71-d25fa0dcb3ef",
+              "name": "Nitro_Zero_Downtime",
+              "color": "#0047BB",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "01da6a79-8b9f-48a2-ad88-6e8d2bc6cb75",
+              "name": "Nitro_Zero_Downtime",
+              "color": "#A91024",
+              "objectType": "Component"
+            }
+          ],
+          "user": "suranc1"
+        },
+        {
+          "id": "94b6ba0a-fffa-43bb-ab75-ff52e766c63c",
+          "securityResourceId": "64a344e2-e14c-43b5-a1c3-5179eac0ddfd",
+          "name": "Nitro_Web",
+          "created": 1757525204467,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "4b31f6be-7289-47b3-b38e-e41ed6eca239",
+              "name": "Nitro_Web",
+              "color": "#D9182D",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "3616a17a-1416-41a7-9c1f-59d03e2c9a6a",
+              "name": "Nitro_Web",
+              "color": "#D9182D",
+              "objectType": "Component"
+            }
+          ],
+          "user": "salvs34 (sarnoj1)"
+        }
+      ],
+      "pipelines": [
+        {
+          "id": "036f91cf-43bb-4c22-9e92-8b4005660e3f",
+          "name": "Make Active",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 34,
+          "version": 58,
+          "commit": 21415,
+          "path": "applicationTemplates/7c0cf4e4-492e-4dca-8f41-4ab926a71669/processes/987eb405-0f09-4779-8c8c-720aa3ae9f8c",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "b69e0ceb-3c5d-41d5-9ff8-a902ea7d3781",
+            "securityResourceId": "eecc6d83-4c1a-4fbd-9b1c-98ab7cd30425",
+            "name": "Javahosting Nitro Application Test",
+            "description": "",
+            "created": 1757525204467,
+            "versionCount": 81,
+            "version": 66,
+            "path": "applicationTemplates/958d7ac6-4bc7-4ad2-af3e-6ba64c59fb4c",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "7e8cd7d8-a127-4bda-a044-faa3fda2128d",
+                  "name": "Nitro_Property",
+                  "color": "#A91024",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "0f07cd81-8231-4bf6-ab65-c2c5b1efffdc",
+                  "name": "Nitro_App",
+                  "color": "#0047BB",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "e4c79b3f-bbf0-4ec4-9ae0-fd3b42241a10",
+                  "name": "Nitro_Web",
+                  "color": "#17AF4B",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "f5c7ec81-bace-4913-b61a-0b47c6ae7d4a",
+                  "name": "Nitro_Zero_Downtime",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "andrem6",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        },
+        {
+          "id": "3a016af6-352e-48bc-9745-80ae1f2118c2",
+          "name": "deploy deployment group",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 26,
+          "version": 50,
+          "commit": 23141,
+          "path": "applicationTemplates/d0c9b3d3-8d6b-4c82-ac4d-270a78ebd511/processes/4b367157-ceb0-4b0f-8db1-dd3cc24308e7",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "52403afc-dd3e-4f91-977f-4246da80ff34",
+            "securityResourceId": "13eb01d6-1f3d-4406-945c-b48cb9ed0a4d",
+            "name": "Javahosting Nitro Application Test",
+            "description": "",
+            "created": 1757525204467,
+            "versionCount": 86,
+            "version": 19,
+            "path": "applicationTemplates/45e5bf4e-7b96-48b5-a34b-5c2a75961f5e",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "df82c872-2f35-4e94-a6c7-325f58ddf61b",
+                  "name": "Nitro_Property",
+                  "color": "#EE3D96",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "d4203959-8be7-46fc-a132-735d2fa34191",
+                  "name": "Nitro_App",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "82e66e15-9fe3-41f1-97a3-894797ab6165",
+                  "name": "Nitro_Web",
+                  "color": "#D9182D",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "aa7e95f0-dfbd-4e4a-a0ad-e8cd545f8ceb",
+                  "name": "Nitro_Zero_Downtime",
+                  "color": "#FFCF01",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "salvs34 (sarnoj1)",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+service:
+  name: Nitro_Zero_Downtime
+  identifier: Nitro_Zero_Downtime
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Nitro_Zero_Downtime: 'true'
+  serviceDefinition:
+    type: Ssh
+    spec: {}

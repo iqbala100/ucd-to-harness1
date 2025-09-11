@@ -1,0 +1,59 @@
+pipeline:
+  name: Informatica PowerCenter dlody - deploy
+  identifier: Informatica_PowerCenter_dlody_deploy
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    criticality: critical
+    regulated: 'false'
+  stages:
+  - stage:
+      name: Informatica_Deployment_Group
+      identifier: Informatica_Deployment_Group
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Informatica_Deployment_Group
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Informatica_Deployment_Group"'
+  - stage:
+      name: Informatica_Import_Objects
+      identifier: Informatica_Import_Objects
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Informatica_Import_Objects
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Informatica_Import_Objects"'

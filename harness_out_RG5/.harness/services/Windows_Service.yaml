@@ -1,0 +1,10 @@
+service:
+  name: Windows_Service
+  identifier: Windows_Service
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Windows_Service: 'true'
+  serviceDefinition:
+    type: WinRm
+    spec: {}

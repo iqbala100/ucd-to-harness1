@@ -1,0 +1,337 @@
+{
+  "metadata": {
+    "export_date": "2025-09-10T17:26:44.516527+00:00",
+    "tool_version": "1.0",
+    "total_applications": 1
+  },
+  "applications": [
+    {
+      "application": {
+        "id": "c1547d15-0aa5-40b8-9447-8ebd13f14d48",
+        "securityResourceId": "47745d91-cacf-420d-b8e0-de29ad925b71",
+        "name": "Windows Application (Standard) Tests ivtja",
+        "created": 1757525204455,
+        "enforceCompleteSnapshots": false,
+        "active": true,
+        "tags": [
+          {
+            "id": "bad66f11-b77e-4a71-aa20-68cb10f97e0b",
+            "name": "criticality:critical",
+            "color": "#FFCF01",
+            "objectType": "Application"
+          },
+          {
+            "id": "24aa334c-51ab-4644-8d00-5a6e93065e91",
+            "name": "regulated:false",
+            "color": "#FFCF01",
+            "objectType": "Application"
+          }
+        ],
+        "deleted": false,
+        "templateVersion": -1,
+        "templateId": "850d1a95-41a6-4feb-8cce-fa03303161d6",
+        "onlyChangedVersions": true,
+        "useWizard": false,
+        "user": "salvs34 (sarnoj1)"
+      },
+      "components": [
+        {
+          "id": "9665c2c0-61df-46ce-b8b4-3c7e8ba757ae",
+          "securityResourceId": "0eec96f5-ae14-463a-a92c-acd9c6a78679",
+          "name": "Windows_Config_Deploy",
+          "created": 1757525204455,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "ee0dd2a7-04f7-4a08-911a-ffd7b3987671",
+              "name": "Windows_Config_Deploy",
+              "color": "#17AF4B",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "e8388c76-f0a1-4eb5-819e-bd5db6f88956",
+              "name": "Windows_Config_Deploy",
+              "color": "#A91024",
+              "objectType": "Component"
+            }
+          ],
+          "user": "salvs34 (sarnoj1)"
+        },
+        {
+          "id": "ef331c74-97a7-466d-bd8d-8dfe9ae62790",
+          "securityResourceId": "9d78aa4b-7fc7-481b-86e6-6a076a57986a",
+          "name": "Windows-BATCH",
+          "created": 1757525204455,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "c8223008-6c33-4303-a184-e76bec3248e4",
+              "name": "Windows-BATCH",
+              "color": "#0047BB",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "0760321c-9ba5-4129-9cb3-3d5233b9d61a",
+              "name": "Windows-BATCH",
+              "color": "#00B2EF",
+              "objectType": "Component"
+            }
+          ],
+          "user": "andrem6"
+        },
+        {
+          "id": "d08ae34f-d116-4e2f-a11e-5ee9b59140ee",
+          "securityResourceId": "756fdf63-0d9e-431a-864e-5fe40a9f081d",
+          "name": "Windows_Service",
+          "created": 1757525204455,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "ef910bf1-764b-4212-a4a2-66c6a57fc832",
+              "name": "Windows_Service",
+              "color": "#17AF4B",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "5ff80d07-443c-437a-90db-4a64afddd539",
+              "name": "Windows_Service",
+              "color": "#FFCF01",
+              "objectType": "Component"
+            }
+          ],
+          "user": "suranc1"
+        }
+      ],
+      "pipelines": [
+        {
+          "id": "b4eb0818-41be-43f6-9d40-b9e2b986bb07",
+          "name": "Make Active",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 6,
+          "version": 32,
+          "commit": 23651,
+          "path": "applicationTemplates/e94ac77e-c9e6-44f2-8533-3252a8d236b0/processes/9c7425cc-8679-4066-86a7-e4990f0dc177",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "61150414-067e-4839-a7b8-d6dde1c31edd",
+            "securityResourceId": "7aa7365f-b982-4658-8074-2b48cfa60403",
+            "name": "Windows Application (Standard) Tests",
+            "description": "",
+            "created": 1757525204455,
+            "versionCount": 20,
+            "version": 22,
+            "path": "applicationTemplates/58d564bb-042f-48ab-9126-df771bad8edd",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "13f3691e-a4b2-4df8-a33f-1e332decc0f4",
+                  "name": "Windows_Config_Deploy",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "bad26c38-b802-44a1-aaf9-a988ceabcc1a",
+                  "name": "MSI_Deploy",
+                  "color": "#A91024",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "a920b514-bbeb-4379-9ccf-ffd4f4ccc69e",
+                  "name": "Windows Web-Content",
+                  "color": "#0047BB",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "f1a98fda-ee56-42af-8a53-821ba7c8eb7c",
+                  "name": "Windows-BATCH",
+                  "color": "#A91024",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "fbdce5ad-62bd-4833-9ec7-a7b98ecb2f96",
+                  "name": "IIS_MS_Web_Deploy",
+                  "color": "#0047BB",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "salvs34 (sarnoj1)",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        },
+        {
+          "id": "3b80e464-c486-434d-a5fa-c4eb7caa580a",
+          "name": "deploy deployment group",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 49,
+          "version": 20,
+          "commit": 15760,
+          "path": "applicationTemplates/698e5214-89c7-468c-aa3d-9cb3fb0649c1/processes/5bf7db4f-85da-4441-8d3b-0f26c737ce96",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "dee47325-fdc9-4e06-a66e-39720d5925ed",
+            "securityResourceId": "dd5b007d-f6d8-411e-b6ad-ff108784aa11",
+            "name": "Windows Application (Standard) Tests",
+            "description": "",
+            "created": 1757525204455,
+            "versionCount": 8,
+            "version": 81,
+            "path": "applicationTemplates/6d197525-7486-463c-bc59-1601576d7179",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "2283740a-c442-419d-a614-5a1a725d2289",
+                  "name": "Windows_Config_Deploy",
+                  "color": "#EE3D96",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "b9790ff5-e1c0-4357-acb1-8b27855ebdb6",
+                  "name": "MSI_Deploy",
+                  "color": "#A91024",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "2fa04dea-cb42-45a5-abef-127cf90942df",
+                  "name": "Windows Web-Content",
+                  "color": "#EE3D96",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "1a5eaae0-aa34-4bdb-855d-2b8147c0abc0",
+                  "name": "Windows-BATCH",
+                  "color": "#17AF4B",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "37b5ab0a-d7e8-476d-ad6c-7a8bc1b6a920",
+                  "name": "IIS_MS_Web_Deploy",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "suranc1",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+service:
+  name: Windows-BATCH
+  identifier: Windows_BATCH
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Windows-BATCH: 'true'
+  serviceDefinition:
+    type: WinRm
+    spec: {}

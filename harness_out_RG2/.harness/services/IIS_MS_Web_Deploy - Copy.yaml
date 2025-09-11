@@ -1,0 +1,10 @@
+service:
+  name: IIS_MS_Web_Deploy
+  identifier: IIS_MS_Web_Deploy
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    IIS_MS_Web_Deploy: 'true'
+  serviceDefinition:
+    type: WinRm
+    spec: {}

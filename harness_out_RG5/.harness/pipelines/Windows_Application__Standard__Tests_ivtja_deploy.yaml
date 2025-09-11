@@ -1,0 +1,87 @@
+pipeline:
+  name: Windows Application (Standard) Tests ivtja - deploy
+  identifier: Windows_Application__Standard__Tests_ivtja_deploy
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    criticality: critical
+    regulated: 'false'
+  stages:
+  - stage:
+      name: Windows_Config_Deploy
+      identifier: Windows_Config_Deploy
+      type: Deployment
+      spec:
+        deploymentType: WinRm
+        service:
+          serviceRef: Windows_Config_Deploy
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: PowerShell
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'Write-Host "TODO: implement deployment for component:
+                      Windows_Config_Deploy"'
+  - stage:
+      name: Windows-BATCH
+      identifier: Windows_BATCH
+      type: Deployment
+      spec:
+        deploymentType: WinRm
+        service:
+          serviceRef: Windows_BATCH
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: PowerShell
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'Write-Host "TODO: implement deployment for component:
+                      Windows-BATCH"'
+  - stage:
+      name: Windows_Service
+      identifier: Windows_Service
+      type: Deployment
+      spec:
+        deploymentType: WinRm
+        service:
+          serviceRef: Windows_Service
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: PowerShell
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'Write-Host "TODO: implement deployment for component:
+                      Windows_Service"'

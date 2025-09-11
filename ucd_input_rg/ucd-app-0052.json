@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "export_date": "2025-09-10T17:26:44.641502+00:00",
+    "tool_version": "1.0",
+    "total_applications": 1
+  },
+  "applications": [
+    {
+      "application": {
+        "id": "e0e2e61e-78b0-4259-8615-0e3fd9202840",
+        "securityResourceId": "7cd15036-d2c5-42d1-9c85-db4868b405bb",
+        "name": "Windows Web Application elfhz",
+        "created": 1757525204461,
+        "enforceCompleteSnapshots": false,
+        "active": true,
+        "tags": [
+          {
+            "id": "a8e22c7c-d0f9-448f-96fe-d1b65efa1419",
+            "name": "criticality:critical",
+            "color": "#17AF4B",
+            "objectType": "Application"
+          },
+          {
+            "id": "38031576-4428-40bd-a713-c812737a66ba",
+            "name": "regulated:false",
+            "color": "#D9182D",
+            "objectType": "Application"
+          }
+        ],
+        "deleted": false,
+        "templateVersion": -1,
+        "templateId": "16859228-2328-4cf6-8667-38c422277bbb",
+        "onlyChangedVersions": true,
+        "useWizard": false,
+        "user": "suranc1"
+      },
+      "components": [
+        {
+          "id": "6816505b-ad7a-40b6-b1fb-6ee9ce0933a1",
+          "securityResourceId": "2c3b8c51-5da6-4e94-a698-b6e3b6e1f063",
+          "name": "MSI_Deploy",
+          "created": 1757525204461,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "6f3b6370-dfd5-4e51-9149-1c0994fcf819",
+              "name": "MSI_Deploy",
+              "color": "#17AF4B",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "0ddf27de-544c-45fd-9276-69f1e994c5e5",
+              "name": "MSI_Deploy",
+              "color": "#EE3D96",
+              "objectType": "Component"
+            }
+          ],
+          "user": "suranc1"
+        },
+        {
+          "id": "fb4e461c-f506-4a45-9536-5d477102513e",
+          "securityResourceId": "e4a97bda-3911-4ab8-b4f2-56e5a5c8b67e",
+          "name": "IIS_MS_Web_Deploy",
+          "created": 1757525204461,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "c02a2f44-f31f-4f05-a7eb-04c5b7605aba",
+              "name": "IIS_MS_Web_Deploy",
+              "color": "#00B2EF",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "9766593c-1806-4313-bc9a-42100075efc1",
+              "name": "IIS_MS_Web_Deploy",
+              "color": "#17AF4B",
+              "objectType": "Component"
+            }
+          ],
+          "user": "suranc1"
+        },
+        {
+          "id": "23b9bb98-a06c-4962-829c-7a9323784515",
+          "securityResourceId": "c1fea513-6903-4c14-978d-edb0e0c5f335",
+          "name": "Windows_Service",
+          "created": 1757525204461,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "407f3623-fc23-4ddc-a82c-b95168651fac",
+              "name": "Windows_Service",
+              "color": "#EE3D96",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "9099c4c5-6a0e-48af-a1f4-82b9cc753590",
+              "name": "Windows_Service",
+              "color": "#0047BB",
+              "objectType": "Component"
+            }
+          ],
+          "user": "salvs34 (sarnoj1)"
+        }
+      ],
+      "pipelines": [
+        {
+          "id": "acf3d75a-76fa-455c-b654-c1863e44b988",
+          "name": "Make Active",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 52,
+          "version": 41,
+          "commit": 20171,
+          "path": "applicationTemplates/b2046804-5636-4c55-b00c-494311d3ed04/processes/b846d7c9-3296-46d3-9d73-58e75028cf58",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "d183a90b-5256-4d37-a41c-6267872d5686",
+            "securityResourceId": "1e09411c-fca0-48b9-a566-c39967443739",
+            "name": "Windows Web Application",
+            "description": "",
+            "created": 1757525204461,
+            "versionCount": 86,
+            "version": 124,
+            "path": "applicationTemplates/7c4ba2e1-6e36-4fc7-aa3b-784b258a9ce2",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "4f60bd1c-6220-470f-9c9f-5a02b860777c",
+                  "name": "Windows_Config_Deploy",
+                  "color": "#17AF4B",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "152eae8f-e1f2-4018-aa95-773c78556f05",
+                  "name": "MSI_Deploy",
+                  "color": "#0047BB",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "fdc53e1b-de0d-45bd-9da2-60d836fc3d17",
+                  "name": "Windows Web-Content",
+                  "color": "#EE3D96",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "c5d5b9a2-a0b2-414c-b975-5c32719d0927",
+                  "name": "Windows-BATCH",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "14ab2bdc-2739-48ff-a98f-8fd8441da458",
+                  "name": "IIS_MS_Web_Deploy",
+                  "color": "#00B2EF",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "summerd2 (SUMMERD2)",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

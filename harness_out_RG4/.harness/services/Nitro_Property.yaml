@@ -1,0 +1,10 @@
+service:
+  name: Nitro_Property
+  identifier: Nitro_Property
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Nitro_Property: 'true'
+  serviceDefinition:
+    type: Ssh
+    spec: {}

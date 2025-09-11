@@ -1,0 +1,10 @@
+service:
+  name: Informatica_Folder_Migration
+  identifier: Informatica_Folder_Migration
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Informatica_Folder_Migration: 'true'
+  serviceDefinition:
+    type: Ssh
+    spec: {}

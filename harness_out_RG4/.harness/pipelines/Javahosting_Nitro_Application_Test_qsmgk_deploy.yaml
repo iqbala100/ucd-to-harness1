@@ -1,0 +1,109 @@
+pipeline:
+  name: Javahosting Nitro Application Test qsmgk - deploy
+  identifier: Javahosting_Nitro_Application_Test_qsmgk_deploy
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    criticality: critical
+    regulated: 'false'
+  stages:
+  - stage:
+      name: Nitro_Property
+      identifier: Nitro_Property
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Nitro_Property
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Nitro_Property"'
+  - stage:
+      name: Nitro_App
+      identifier: Nitro_App
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Nitro_App
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Nitro_App"'
+  - stage:
+      name: Nitro_Web
+      identifier: Nitro_Web
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Nitro_Web
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Nitro_Web"'
+  - stage:
+      name: Nitro_Zero_Downtime
+      identifier: Nitro_Zero_Downtime
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Nitro_Zero_Downtime
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Nitro_Zero_Downtime"'

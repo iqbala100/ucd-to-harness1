@@ -1,0 +1,10 @@
+service:
+  name: Nitro_Web
+  identifier: Nitro_Web
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Nitro_Web: 'true'
+  serviceDefinition:
+    type: Ssh
+    spec: {}

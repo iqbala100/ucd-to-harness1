@@ -1,0 +1,369 @@
+{
+  "metadata": {
+    "export_date": "2025-09-10T17:26:44.739703+00:00",
+    "tool_version": "1.0",
+    "total_applications": 1
+  },
+  "applications": [
+    {
+      "application": {
+        "id": "90f7d420-d8c8-4cbf-a286-e6e7c9881a49",
+        "securityResourceId": "1c49ed36-dc72-4757-8ed4-858225d7143b",
+        "name": "Informatica PowerCenter zfupy",
+        "created": 1757525204468,
+        "enforceCompleteSnapshots": false,
+        "active": true,
+        "tags": [
+          {
+            "id": "195c846c-71ee-4c9d-9c63-4438852d92e9",
+            "name": "criticality:critical",
+            "color": "#D9182D",
+            "objectType": "Application"
+          },
+          {
+            "id": "528fc359-795a-4433-9d55-70904de0934e",
+            "name": "regulated:false",
+            "color": "#A91024",
+            "objectType": "Application"
+          }
+        ],
+        "deleted": false,
+        "templateVersion": -1,
+        "templateId": "26b557f6-cbe2-4ab7-aa4f-3e126960c893",
+        "onlyChangedVersions": true,
+        "useWizard": false,
+        "user": "suranc1"
+      },
+      "components": [
+        {
+          "id": "fc56aeb9-256e-43f1-baec-63fde14ef10f",
+          "securityResourceId": "51d16643-7ea4-47a5-80e4-bd0a1934af04",
+          "name": "Informatica_Multiple_Deployment_Group",
+          "created": 1757525204468,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "b7e6bdde-b893-4347-ac46-55b9ab5746a7",
+              "name": "Informatica_Multiple_Deployment_Group",
+              "color": "#FFCF01",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "06673bba-3de3-47d6-a6dc-3c372dfd45b5",
+              "name": "Informatica_Multiple_Deployment_Group",
+              "color": "#DD731C",
+              "objectType": "Component"
+            }
+          ],
+          "user": "summerd2 (SUMMERD2)"
+        },
+        {
+          "id": "7a415172-1aab-4dc0-9ee2-169fa2e97360",
+          "securityResourceId": "bf955ad1-6cde-4984-af47-e2020221a04a",
+          "name": "Informatica_Deployment_Group",
+          "created": 1757525204468,
+          "componentType": "STANDARD",
+          "ignoreQualifiers": 0,
+          "importAutomatically": false,
+          "useVfs": true,
+          "active": true,
+          "integrationFailed": false,
+          "deleted": false,
+          "defaultVersionType": "FULL",
+          "cleanupDaysToKeep": 0,
+          "cleanupCountToKeep": 0,
+          "templateVersion": -1,
+          "tags": [
+            {
+              "id": "e67c1092-d2cc-42bd-9ab7-af0efcd79b81",
+              "name": "Informatica_Deployment_Group",
+              "color": "#A91024",
+              "objectType": "Component"
+            }
+          ],
+          "templateTags": [
+            {
+              "id": "c25feceb-11ee-481d-904c-cdfdf7c350a5",
+              "name": "Informatica_Deployment_Group",
+              "color": "#A91024",
+              "objectType": "Component"
+            }
+          ],
+          "user": "salvs34 (sarnoj1)"
+        }
+      ],
+      "pipelines": [
+        {
+          "id": "b4d55ce2-60d8-4c94-8009-b0921972270e",
+          "name": "deploy",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 50,
+          "version": 38,
+          "commit": 21814,
+          "path": "applicationTemplates/635faf29-c68c-4007-a365-9ddff4c1360e/processes/33142919-3df7-4726-ac43-82ca35c9b7e1",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "d52d4632-7264-4249-a210-80c1aada8027",
+            "securityResourceId": "e03717a2-801f-418c-b636-0629914bc82d",
+            "name": "Informatica PowerCenter",
+            "description": "",
+            "created": 1757525204468,
+            "versionCount": 23,
+            "version": 133,
+            "path": "applicationTemplates/a6c9a67e-a931-4fab-9994-c4354eda08ca",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "55c77302-ff6a-4660-8993-cb3db4830377",
+                  "name": "Informatica_Import_Objects",
+                  "color": "#00B2EF",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "ec8e5b2a-11e2-497a-99c0-a798f8a16a02",
+                  "name": "Informatica_Deployment_Group",
+                  "color": "#D9182D",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "6ddeefa6-f737-4b59-812b-1c373a8564a1",
+                  "name": "Informatica_Multiple_Deployment_Group",
+                  "color": "#EE3D96",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "3d9f1264-5bb7-404a-ba12-5bd74e023095",
+                  "name": "Informatica_Folder_Migration",
+                  "color": "#D9182D",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "salvs34 (sarnoj1)",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        },
+        {
+          "id": "f1f550de-3a3d-4726-9f70-b51a63724da8",
+          "name": "deploy deployment group",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 1,
+          "version": 5,
+          "commit": 19981,
+          "path": "applicationTemplates/f3efabeb-e0c9-4f80-987f-bf566ea1fc0b/processes/31403c10-c59b-421f-90b6-d4ac08c901f2",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "84bc11bb-064e-4f0b-af83-aab89b1db453",
+            "securityResourceId": "5b694575-9628-41cb-a874-5d3420894243",
+            "name": "Informatica PowerCenter",
+            "description": "",
+            "created": 1757525204468,
+            "versionCount": 42,
+            "version": 21,
+            "path": "applicationTemplates/ffcccce3-d4a5-4af9-a3cb-f980d6d957df",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "cbc987e2-1a88-4aba-b4d8-57da253edf05",
+                  "name": "Informatica_Import_Objects",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "7e36296d-8c4c-48c6-9b97-95e847a17632",
+                  "name": "Informatica_Deployment_Group",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "6b31433f-4310-436a-8698-c75d79861380",
+                  "name": "Informatica_Multiple_Deployment_Group",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "afb248c9-8078-45f7-a007-947d87c7e544",
+                  "name": "Informatica_Folder_Migration",
+                  "color": "#FFCF01",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "andrem6",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        },
+        {
+          "id": "0536c716-5f19-45b5-bc3b-9e1c9ea273bd",
+          "name": "deploy deployment group",
+          "description": "",
+          "active": true,
+          "inventoryManagementType": "AUTOMATIC",
+          "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+          "versionCount": 25,
+          "version": 51,
+          "commit": 11544,
+          "path": "applicationTemplates/9f158ba9-c4c3-4770-b91f-8ea68598b265/processes/111d5ea2-169a-4d1e-9fff-bb55018048bc",
+          "deleted": false,
+          "metadataType": "applicationProcess",
+          "disableSnapshots": false,
+          "applicationTemplate": {
+            "id": "5ce8edce-081b-4dbc-a9ca-70e85980cfc1",
+            "securityResourceId": "fc16946e-12a2-4a5c-b0ed-83b7e17cfd14",
+            "name": "Informatica PowerCenter",
+            "description": "",
+            "created": 1757525204468,
+            "versionCount": 46,
+            "version": 33,
+            "path": "applicationTemplates/6fe37f3a-5c7d-4a49-a18c-af70511827ed",
+            "deleted": false,
+            "enforceCompleteSnapshots": false,
+            "onlyChangedVersions": true,
+            "useWizard": false,
+            "tags": [],
+            "tagRequirements": [
+              {
+                "tag": {
+                  "id": "721548ea-ebd2-42a1-9b1d-dc8da81ac81f",
+                  "name": "Informatica_Import_Objects",
+                  "color": "#00B2EF",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "89ca69f2-72d1-4019-9044-b72c2bc23e07",
+                  "name": "Informatica_Deployment_Group",
+                  "color": "#DD731C",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "6a61f7ea-24f2-476b-8c40-90d635f213e8",
+                  "name": "Informatica_Multiple_Deployment_Group",
+                  "color": "#A91024",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              },
+              {
+                "tag": {
+                  "id": "d0467ed2-be61-45e9-8d83-c3616fe0319c",
+                  "name": "Informatica_Folder_Migration",
+                  "color": "#17AF4B",
+                  "objectType": "Component"
+                },
+                "number": 999,
+                "type": "LESS_THAN"
+              }
+            ],
+            "user": "summerd2 (SUMMERD2)",
+            "security": {
+              "read": true,
+              "Create Application Templates": true,
+              "Delete": true,
+              "Edit Basic Settings": true,
+              "Manage Blueprints": true,
+              "Manage Component Tags": true,
+              "Manage Environment Templates": true,
+              "Manage Processes": true,
+              "Manage Properties": true,
+              "Manage Teams": true,
+              "View Application Templates": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
