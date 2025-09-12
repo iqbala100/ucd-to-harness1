@@ -1,4 +1,4 @@
-output_base: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output
+output_base: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_final
 matching_basis: Common when YAML share the same (name, identifier) AND identical content.
 config:
   case_insensitive: true
@@ -37,20 +37,20 @@ config:
       - id
 services:
   category: services
-  index_file: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output\services\common_index.yaml
+  index_file: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_final\services\common_index.yaml
   roots:
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG1\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG1\.harness\services
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG2\.harness\services
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG3\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG3\.harness\services
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness\services
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG5\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness\services
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG6\.harness\services
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\services
   counts:
     total_yaml_seen: 21
     usable_yaml: 21
@@ -62,28 +62,28 @@ services:
     files_copied_all_roots: 0
 pipelines:
   category: pipelines
-  index_file: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output\pipelines\common_index.yaml
+  index_file: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_final\pipelines\common_index.yaml
   roots:
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG1\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG1\.harness\pipelines
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG2\.harness\pipelines
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG3\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG3\.harness\pipelines
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness\pipelines
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG5\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness\pipelines
   - label: .harness
-    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG6\.harness\pipelines
+    path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\pipelines
   counts:
     total_yaml_seen: 7
     usable_yaml: 7
     skipped_missing_name_or_identifier: 0
-    distinct_name_identifier_pairs: 7
-    groups_any: 0
+    distinct_name_identifier_pairs: 6
+    groups_any: 1
     groups_all_roots: 0
-    files_copied_any: 0
+    files_copied_any: 2
     files_copied_all_roots: 0
 notes:
 - See services/common_index.yaml and pipelines/common_index.yaml for exact file mappings.

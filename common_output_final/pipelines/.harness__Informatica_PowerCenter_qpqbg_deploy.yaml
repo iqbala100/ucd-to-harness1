@@ -1,6 +1,6 @@
 pipeline:
-  name: Informatica PowerCenter qpqbg - deploy1
-  identifier: Informatica_PowerCenter_qpqbg_deploy1
+  name: Informatica PowerCenter qpqbg - deploy
+  identifier: Informatica_PowerCenter_qpqbg_deploy
   orgIdentifier: my_org
   projectIdentifier: my_project
   tags:
@@ -33,8 +33,8 @@ pipeline:
                   spec:
                     script: 'echo "TODO: implement deployment for component: Informatica_Deployment_Group"'
   - stage:
-      name: Informatica_Folder_Migration1
-      identifier: Informatica_Folder_Migration1
+      name: Informatica_Folder_Migration
+      identifier: Informatica_Folder_Migration
       type: Deployment
       spec:
         deploymentType: Ssh
