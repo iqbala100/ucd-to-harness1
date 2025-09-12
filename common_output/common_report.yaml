@@ -1,0 +1,91 @@
+output_base: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output
+matching_basis: Common when YAML share the same (name, identifier) AND identical content.
+config:
+  case_insensitive: true
+  require_both_fields: true
+  require_identical_content: true
+  content_compare_mode: hash
+  ignore_order_in_content: true
+  field_paths:
+    services:
+      name:
+      - service.name
+      - name
+      - metadata.name
+      identifier:
+      - service.identifier
+      - identifier
+      - metadata.identifier
+      - id
+    pipelines:
+      name:
+      - pipeline.name
+      - name
+      - metadata.name
+      identifier:
+      - pipeline.identifier
+      - identifier
+      - metadata.identifier
+      - id
+    _generic:
+      name:
+      - name
+      - metadata.name
+      identifier:
+      - identifier
+      - metadata.identifier
+      - id
+services:
+  category: services
+  index_file: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output\services\common_index.yaml
+  roots:
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG1\.harness\services
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness\services
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG3\.harness\services
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness\services
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG5\.harness\services
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG6\.harness\services
+  counts:
+    total_yaml_seen: 21
+    usable_yaml: 21
+    skipped_missing_name_or_identifier: 0
+    distinct_name_identifier_pairs: 14
+    groups_any: 6
+    groups_all_roots: 0
+    files_copied_any: 12
+    files_copied_all_roots: 0
+pipelines:
+  category: pipelines
+  index_file: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\common_output\pipelines\common_index.yaml
+  roots:
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG1\.harness\pipelines
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness\pipelines
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG3\.harness\pipelines
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness\pipelines
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG5\.harness\pipelines
+  - label: .harness
+    path: C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG6\.harness\pipelines
+  counts:
+    total_yaml_seen: 7
+    usable_yaml: 7
+    skipped_missing_name_or_identifier: 0
+    distinct_name_identifier_pairs: 7
+    groups_any: 0
+    groups_all_roots: 0
+    files_copied_any: 0
+    files_copied_all_roots: 0
+notes:
+- See services/common_index.yaml and pipelines/common_index.yaml for exact file mappings.
+- One representative per root is copied for each common cluster.
+- Items present in every root are also copied to the 'all_roots' subfolder.

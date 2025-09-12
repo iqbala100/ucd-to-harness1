@@ -8,13 +8,13 @@ from typing import Any, Dict, List, Tuple, Optional
 # ========== CONFIG ==========
 # Multiple input roots to scan recursively
 input_dirs = [
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness",
     # add more roots if needed...
 ]
 
 # Single destination for matched files + report
-matching_common_folder = r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\yaml_matching_common"
+matching_common_folder = r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\yaml_matching_common"
 
 # --- Metadata match rules (PRIMARY) ---
 REQUIRE_SAME_NAME = True          # require YAML 'name' equality

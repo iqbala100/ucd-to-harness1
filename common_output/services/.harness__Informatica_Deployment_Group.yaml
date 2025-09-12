@@ -1,0 +1,10 @@
+service:
+  name: Informatica_Deployment_Group
+  identifier: Informatica_Deployment_Group
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Informatica_Deployment_Group: 'true'
+  serviceDefinition:
+    type: Ssh
+    spec: {}

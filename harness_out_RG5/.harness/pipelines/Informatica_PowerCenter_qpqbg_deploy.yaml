@@ -1,0 +1,59 @@
+pipeline:
+  name: Informatica PowerCenter qpqbg - deploy1
+  identifier: Informatica_PowerCenter_qpqbg_deploy1
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    criticality: critical
+    regulated: 'false'
+  stages:
+  - stage:
+      name: Informatica_Deployment_Group
+      identifier: Informatica_Deployment_Group
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Informatica_Deployment_Group
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Informatica_Deployment_Group"'
+  - stage:
+      name: Informatica_Folder_Migration1
+      identifier: Informatica_Folder_Migration1
+      type: Deployment
+      spec:
+        deploymentType: Ssh
+        service:
+          serviceRef: Informatica_Folder_Migration
+        environment:
+          environmentRef: <+input>
+          infrastructureDefinitions:
+          - identifier: <+input>
+        execution:
+          steps:
+          - step:
+              name: Deploy
+              identifier: Deploy
+              type: ShellScript
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: 'echo "TODO: implement deployment for component: Informatica_Folder_Migration"'

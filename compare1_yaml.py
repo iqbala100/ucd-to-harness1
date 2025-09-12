@@ -3,21 +3,23 @@ import re
 import shutil
 import hashlib
 import yaml
-from typing import Any, Dict, List, Tuple, Optional
+from typing import Any, Dict, List, Tuple, Optional, DefaultDict
+from collections import defaultdict
+from itertools import combinations
 
 # ========== CONFIG ==========
 # Multiple input roots to scan recursively
 input_dirs = [
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG1\.harness\services",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG2\.harness\services",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG3\.harness\services",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness\services",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness\services",
-    r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\services",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG1\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG2\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG3\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG4\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG5\.harness",
+    r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\harness_out_RG6\.harness",
 ]
 
-# Base destination; global copies go here, per-root copies go under {matching_common_folder}_by_root/<root_label>/
-matching_common_folder = r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\yaml_matching_common1"
+# Base destination; all outputs are created under this
+matching_common_folder = r"C:\Users\hiiqb\Desktop\ucd-compare\ucd-to-harness1\yaml_matching_common1"
 
 # --- Metadata match rules (PRIMARY) ---
 REQUIRE_SAME_NAME = True          # require YAML 'name' equality
@@ -30,7 +32,7 @@ REQUIRE_SAME_IDENTIFIER = True    # require YAML 'identifier' equality
 #   'exact'   -> sets equal (ignoring order)
 TAGS_MATCH_MODE = "any"
 TAGS_INTERSECT_MIN = 1            # used when TAGS_MATCH_MODE == 'min'
-TAGS_REQUIRED = False             # if True, both files must have non-empty tags to be considered
+TAGS_REQUIRED = False             # if True, both files must have non-empty tags
 
 # Normalize comparisons
 CASE_INSENSITIVE_COMPARE = True   # lowercases name, identifier, tag keys/values
@@ -53,22 +55,21 @@ MATCH_BY_FILENAME = False
 # Copy layout options
 PRESERVE_STRUCTURE = False        # mirror source subfolders; if False, flatten with safe names
 
-# Output choices
-WRITE_GLOBAL_COMMON = True        # copy all matched files into a single folder (matching_common_folder)
-WRITE_PER_ROOT_COMMON = True      # also copy matched files into per-root folders
-PER_ROOT_BASE = matching_common_folder + "_by_root"  # base folder for per-root copies
-
-# If True, only copy files whose (name+identifier) are present in *every* input root (intersection across all roots)
-REQUIRE_GROUP_IN_ALL_ROOTS = False
-
-# Clear destination folders before copying
+# Clear destination before copying
 CLEAN_DEST = False
 
-# YAML report name (placed in the global folder + per-root base)
-REPORT_NAME = "matches_report.yaml"
+# OUTPUT SWITCHES (turn on/off the buckets you need)
+WRITE_PER_ROOT_COMMON_ANY = True
+WRITE_PER_ROOT_COMMON_ALL = True
+WRITE_PER_ROOT_UNIQUE     = True
 
-# Report sample size for common key/values
-MAX_COMMON_SAMPLED = 200
+WRITE_GLOBAL_COMMON_ANY   = True
+WRITE_GLOBAL_COMMON_ALL   = True
+
+WRITE_PAIRWISE_COMMON     = True
+
+# Report name (simple YAML summaries)
+REPORT_NAME = "matches_report.yaml"
 # ========== END CONFIG ==========
 
 # ---- Optional DeepDiff usage (only if ENABLE_CONTENT_CHECK is True) ----
@@ -225,13 +226,13 @@ def sane_name(s: str) -> str:
     s = s.replace(os.sep, "__")
     return re.sub(r"[^A-Za-z0-9._-]+", "_", s)
 
-def build_dest_base(global_base: str, rel_p: str, root_label: str, preserve: bool) -> str:
+def build_dest_base(base: str, rel_p: str, root_label: str, preserve: bool) -> str:
     if preserve:
-        dst = os.path.join(global_base, root_label, rel_p)
+        dst = os.path.join(base, root_label, rel_p)
         ensure_dir(os.path.dirname(dst))
         return dst
     safe = sane_name(rel_p)
-    dst = os.path.join(global_base, f"{root_label}__{safe}")
+    dst = os.path.join(base, f"{root_label}__{safe}")
     root, ext = os.path.splitext(dst)
     if not ext:
         dst = root + ".yaml"
@@ -249,155 +250,160 @@ def main():
         return
 
     # Prepare destinations
-    if WRITE_GLOBAL_COMMON:
-        ensure_dir(matching_common_folder)
-        if CLEAN_DEST:
-            for root, dirs, files in os.walk(matching_common_folder, topdown=False):
-                for name in files:
-                    try: os.remove(os.path.join(root, name))
-                    except Exception: pass
-                for name in dirs:
-                    try: os.rmdir(os.path.join(root, name))
-                    except Exception: pass
+    if CLEAN_DEST and os.path.isdir(matching_common_folder):
+        for root, dirs, files in os.walk(matching_common_folder, topdown=False):
+            for name in files:
+                try: os.remove(os.path.join(root, name))
+                except Exception: pass
+            for name in dirs:
+                try: os.rmdir(os.path.join(root, name))
+                except Exception: pass
+    ensure_dir(matching_common_folder)
 
-    if WRITE_PER_ROOT_COMMON:
-        ensure_dir(PER_ROOT_BASE)
-        if CLEAN_DEST:
-            for root, dirs, files in os.walk(PER_ROOT_BASE, topdown=False):
-                for name in files:
-                    try: os.remove(os.path.join(root, name))
-                    except Exception: pass
-                for name in dirs:
-                    try: os.rmdir(os.path.join(root, name))
-                    except Exception: pass
-
-    # Collect files: (root_idx, label, root, abs, rel)
-    all_files: List[Tuple[int, str, str, str, str]] = []
+    # Collect files: (root_idx, label, root, abs, rel, meta)
+    entries: List[Dict[str, Any]] = []
+    labels: List[str] = []
     for idx, root in enumerate(input_dirs):
         label = os.path.basename(os.path.normpath(root)) or f"root{idx+1}"
+        labels.append(label)
         for abs_p, rel_p in list_yaml_files_recursively(root):
-            all_files.append((idx, label, root, abs_p, rel_p))
-    if len(all_files) < 2:
-        print("No YAML files found.")
-        return
-
-    # Build pairs
-    pairs = []
-    if MATCH_BY_FILENAME:
-        from collections import defaultdict
-        groups = defaultdict(list)
-        for item in all_files:
-            groups[os.path.basename(item[4])].append(item)
-        for _, items in groups.items():
-            for i in range(len(items)):
-                for j in range(i + 1, len(items)):
-                    a, b = items[i], items[j]
-                    if a[0] == b[0]:
-                        continue  # cross-root only for matching basis
-                    pairs.append((a, b))
-    else:
-        for i in range(len(all_files)):
-            for j in range(i + 1, len(all_files)):
-                a, b = all_files[i], all_files[j]
-                if a[0] == b[0]:
-                    continue  # cross-root only by default
-                pairs.append((a, b))
-    if not pairs:
-        print("No cross-root pairs to compare (check MATCH_BY_FILENAME).")
-        return
-
-    # Prepare indices/collections
-    index_by_abs = {e[3]: e for e in all_files}
-    matched_paths_global = set()           # all matched file paths (for global copy)
-    matched_paths_by_root: Dict[str, set] = {}  # root_label -> set(abs_paths) for per-root copies
-    group_presence: Dict[Tuple[Optional[str], Optional[str]], set] = {}  # (name,identifier) -> set(root_idx)
-    report_pairs = []
-    total_pairs = 0
-
-    # Compare
-    for A, B in pairs:
-        total_pairs += 1
-        idxA, labelA, rootA, pathA, relA = A
-        idxB, labelB, rootB, pathB, relB = B
-
-        try:
-            d1 = load_first_yaml_doc(pathA) or {}
-            d2 = load_first_yaml_doc(pathB) or {}
-        except Exception:
-            continue
-
-        metaA = extract_metadata(d1)
-        metaB = extract_metadata(d2)
-
-        ok_meta, meta_info = metadata_match(metaA, metaB)
-        if not ok_meta:
-            continue
-
-        content_ok = True
-        content_detail = {"mode": "none"}
-        if ENABLE_CONTENT_CHECK:
-            if CONTENT_MODE == "exact":
-                diff = DeepDiff(d1, d2, ignore_order=True)
-                content_ok = (not diff)
-                content_detail = {"mode": "exact", "equal": content_ok}
-            else:
-                flat1 = dict(flatten(d1))
-                flat2 = dict(flatten(d2))
-                sim = similarity(flat1, flat2)
-                content_ok = (sim >= SIMILARITY_THRESHOLD)
-                content_detail = {"mode": "threshold", "similarity": round(sim, 4), "threshold": SIMILARITY_THRESHOLD}
-
-        if not content_ok:
-            continue
-
-        # Mark presence by (name, identifier)
-        key = (metaA["name"], metaA["identifier"])  # metaA == metaB here given rules
-        group_presence.setdefault(key, set()).update({idxA, idxB})
-
-        # Record matched paths (global & per-root)
-        matched_paths_global.update([pathA, pathB])
-        matched_paths_by_root.setdefault(labelA, set()).add(pathA)
-        matched_paths_by_root.setdefault(labelB, set()).add(pathB)
-
-        # Sample common key/values (for report)
-        flat1 = dict(flatten(d1))
-        flat2 = dict(flatten(d2))
-        common_keys = [k for k in flat1.keys() if k in flat2 and flat1[k] == flat2[k]]
-        common_sample = [{"path": k, "value": flat1[k]} for k in sorted(common_keys)[:MAX_COMMON_SAMPLED]]
-
-        report_pairs.append({
-            "fileA": {"root": labelA, "rel": relA, "name": metaA["name"], "identifier": metaA["identifier"], "tags_count": len(metaA["tags"])},
-            "fileB": {"root": labelB, "rel": relB, "name": metaB["name"], "identifier": metaB["identifier"], "tags_count": len(metaB["tags"])},
-            "shared_tags": meta_info.get("shared_tags", []),
-            "checks": meta_info.get("checks", []),
-            "content_check": content_detail,
-            "common_values_sampled": common_sample,
-        })
-
-    # If required, restrict to groups present in *all* roots
-    if REQUIRE_GROUP_IN_ALL_ROOTS:
-        must_have = set(range(len(input_dirs)))
-        allowed_groups = {k for k, roots in group_presence.items() if roots.issuperset(must_have)}
-
-        def keep_if_in_all(abs_p: str) -> bool:
-            idx, label, root, _, rel = index_by_abs[abs_p]
             try:
                 doc = load_first_yaml_doc(abs_p) or {}
             except Exception:
-                return False
+                continue
             meta = extract_metadata(doc)
-            return (meta["name"], meta["identifier"]) in allowed_groups
+            entries.append({
+                "root_idx": idx,
+                "label": label,
+                "root": root,
+                "abs": abs_p,
+                "rel": rel_p,
+                "meta": meta,
+                "filename": os.path.basename(rel_p),
+            })
+    if len(entries) < 2:
+        print("No YAML files found.")
+        return
 
-        matched_paths_global = {p for p in matched_paths_global if keep_if_in_all(p)}
-        for label in list(matched_paths_by_root.keys()):
-            matched_paths_by_root[label] = {p for p in matched_paths_by_root[label] if p in matched_paths_global}
+    # Group by (name,identifier) key
+    def key_of(meta: Dict[str, Any]) -> Optional[Tuple[Optional[str], Optional[str]]]:
+        if REQUIRE_SAME_NAME and REQUIRE_SAME_IDENTIFIER:
+            return (meta["name"], meta["identifier"])
+        if REQUIRE_SAME_NAME:
+            return (meta["name"], None)
+        if REQUIRE_SAME_IDENTIFIER:
+            return (None, meta["identifier"])
+        return None
 
-    # ---- Copy: GLOBAL (optional) ----
-    copied_global = 0
-    if WRITE_GLOBAL_COMMON:
+    groups: DefaultDict[Tuple[Optional[str], Optional[str]], List[Dict[str, Any]]] = defaultdict(list)
+    for e in entries:
+        k = key_of(e["meta"])
+        if k is not None:
+            groups[k].append(e)
+
+    # Optional filename pre-filter inside each group
+    if MATCH_BY_FILENAME:
+        new_groups: DefaultDict[Tuple[Optional[str], Optional[str]], List[Dict[str, Any]]] = defaultdict(list)
+        for k, items in groups.items():
+            buckets: DefaultDict[str, List[Dict[str, Any]]] = defaultdict(list)
+            for it in items:
+                buckets[it["filename"]].append(it)
+            for _, blist in buckets.items():
+                if len(blist) > 1:
+                    new_groups[k].extend(blist)
+        groups = new_groups
+
+    # Helper to check tags (and optional content) between two entries
+    def entries_match(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
+        ok, _ = metadata_match(a["meta"], b["meta"])
+        if not ok:
+            return False
+        if ENABLE_CONTENT_CHECK:
+            if CONTENT_MODE == "exact":
+                diff = DeepDiff(load_first_yaml_doc(a["abs"]) or {}, load_first_yaml_doc(b["abs"]) or {}, ignore_order=True)
+                return not diff
+            else:
+                flat1 = dict(flatten(load_first_yaml_doc(a["abs"]) or {}))
+                flat2 = dict(flatten(load_first_yaml_doc(b["abs"]) or {}))
+                return similarity(flat1, flat2) >= SIMILARITY_THRESHOLD
+        return True
+
+    # Derive relationship sets
+    root_count = len(input_dirs)
+    key_present_in_root: DefaultDict[Tuple[Optional[str], Optional[str]], set] = defaultdict(set)
+    pairwise_keys: DefaultDict[Tuple[str, str], set] = defaultdict(set)  # (labelA,labelB) -> set(keys)
+
+    # Per-root file buckets
+    per_root_common_any: DefaultDict[str, set] = defaultdict(set)
+    per_root_common_all: DefaultDict[str, set] = defaultdict(set)
+    per_root_all_keys: DefaultDict[int, set] = defaultdict(set)  # for unique calc
+
+    for k, items in groups.items():
+        # Track which roots have this key at all
+        roots_with_key = {it["root_idx"] for it in items}
+        for idx in roots_with_key:
+            per_root_all_keys[idx].add(k)
+
+        # Build pairwise matches for this key based on tags/content rules
+        for a, b in combinations(items, 2):
+            if a["root_idx"] == b["root_idx"]:
+                continue
+            if entries_match(a, b):
+                pair_label = tuple(sorted([a["label"], b["label"]]))
+                pairwise_keys[pair_label].add(k)
+                # common_any per root
+                per_root_common_any[a["label"]].add(a["abs"])
+                per_root_common_any[b["label"]].add(b["abs"])
+                key_present_in_root[k].update({a["root_idx"], b["root_idx"]})
+
+    # Keys common to ALL roots (respecting tags/content via pairwise matches)
+    common_all_keys = set()
+    for k, roots in key_present_in_root.items():
+        if len(roots) == root_count:
+            # sanity: ensure for this key, every root has at least one file matched with the others
+            # (already implied by pairwise building; we accept it)
+            common_all_keys.add(k)
+
+    # Fill per_root_common_all (choose any file for that key from that root)
+    by_root_by_key: DefaultDict[Tuple[int, Tuple[Optional[str], Optional[str]]], List[Dict[str, Any]]] = defaultdict(list)
+    for k, items in groups.items():
+        for it in items:
+            by_root_by_key[(it["root_idx"], k)].append(it)
+
+    for k in common_all_keys:
+        for idx in range(root_count):
+            candidates = by_root_by_key.get((idx, k), [])
+            if candidates:
+                it = candidates[0]  # first is fine
+                per_root_common_all[it["label"]].add(it["abs"])
+
+    # Unique: keys present only in a single root (no cross-root matches & no presence elsewhere)
+    unique_by_root: DefaultDict[str, set] = defaultdict(set)
+    # count how many roots each key appears in (regardless of tags/content)
+    simple_presence_count: DefaultDict[Tuple[Optional[str], Optional[str]], set] = defaultdict(set)
+    for k, items in groups.items():
+        simple_presence_count[k] = {it["root_idx"] for it in items}
+    for idx in range(root_count):
+        label = labels[idx]
+        for k in per_root_all_keys[idx]:
+            if len(simple_presence_count[k]) == 1:
+                # pick an arbitrary file for this key in this root
+                candidates = by_root_by_key.get((idx, k), [])
+                if candidates:
+                    unique_by_root[label].add(candidates[0]["abs"])
+
+    # -------- COPY PHASE --------
+    def copy_many(paths: List[str], base: str, label: str):
+        ensure_dir(base)
         seen_hashes = set()
-        for abs_p in sorted(matched_paths_global):
-            idx, label, root, _, rel = index_by_abs[abs_p]
+        copied = 0
+        for abs_p in sorted(paths):
+            # find rel path and label for naming
+            entry = next((e for e in entries if e["abs"] == abs_p), None)
+            if not entry:
+                continue
+            rel = entry["rel"]
+            root_label = label if label else entry["label"]
             try:
                 h = file_sha256(abs_p)
             except Exception:
@@ -405,81 +411,97 @@ def main():
             if h in seen_hashes:
                 continue
             seen_hashes.add(h)
-            dst = build_dest_base(matching_common_folder, rel, label, PRESERVE_STRUCTURE)
+            dst = build_dest_base(base, rel, root_label, PRESERVE_STRUCTURE)
             ensure_dir(os.path.dirname(dst))
             shutil.copy2(abs_p, dst)
-            copied_global += 1
+            copied += 1
+        return copied
 
-        # global report
-        global_report = {
-            "config": {
-                "require_same_name": REQUIRE_SAME_NAME,
-                "require_same_identifier": REQUIRE_SAME_IDENTIFIER,
-                "tags_match_mode": TAGS_MATCH_MODE,
-                "tags_intersect_min": TAGS_INTERSECT_MIN,
-                "tags_required": TAGS_REQUIRED,
-                "case_insensitive": CASE_INSENSITIVE_COMPARE,
-                "field_paths": FIELD_PATHS,
-                "match_by_filename": MATCH_BY_FILENAME,
-                "preserve_structure": PRESERVE_STRUCTURE,
-                "enable_content_check": ENABLE_CONTENT_CHECK,
-                "content_mode": CONTENT_MODE if ENABLE_CONTENT_CHECK else "none",
-                "similarity_threshold": SIMILARITY_THRESHOLD if ENABLE_CONTENT_CHECK and CONTENT_MODE == "threshold" else None,
-                "require_group_in_all_roots": REQUIRE_GROUP_IN_ALL_ROOTS,
-                "max_common_sampled": MAX_COMMON_SAMPLED,
-            },
-            "stats": {
-                "input_roots": len(input_dirs),
-                "pairs_compared": total_pairs,
-                "unique_files_copied": copied_global,
-            },
-            "pairs": report_pairs,
-        }
-        write_yaml(os.path.join(matching_common_folder, REPORT_NAME), global_report)
+    # Per-root outputs
+    per_root_summary: Dict[str, Dict[str, int]] = {}
+    for label in labels:
+        per_root_summary[label] = {}
+        # common_any
+        if WRITE_PER_ROOT_COMMON_ANY:
+            base = os.path.join(matching_common_folder, "per_root", label, "common_any")
+            per_root_summary[label]["common_any"] = copy_many(list(per_root_common_any[label]), base, label)
+        # common_all
+        if WRITE_PER_ROOT_COMMON_ALL:
+            base = os.path.join(matching_common_folder, "per_root", label, "common_all")
+            per_root_summary[label]["common_all"] = copy_many(list(per_root_common_all[label]), base, label)
+        # unique
+        if WRITE_PER_ROOT_UNIQUE:
+            base = os.path.join(matching_common_folder, "per_root", label, "unique")
+            per_root_summary[label]["unique"] = copy_many(list(unique_by_root[label]), base, label)
 
-    # ---- Copy: PER-ROOT (optional) ----
-    copied_by_root_summary = {}
-    if WRITE_PER_ROOT_COMMON:
-        for label, paths in matched_paths_by_root.items():
-            per_root_folder = os.path.join(PER_ROOT_BASE, label)
-            ensure_dir(per_root_folder)
-            seen_hashes = set()
-            copied = 0
-            for abs_p in sorted(paths):
-                # Skip if excluded by all-roots requirement
-                if REQUIRE_GROUP_IN_ALL_ROOTS and abs_p not in matched_paths_global:
-                    continue
-                idx, lbl, root, _, rel = index_by_abs[abs_p]
-                try:
-                    h = file_sha256(abs_p)
-                except Exception:
-                    h = f"path::{abs_p}"
-                if h in seen_hashes:
-                    continue
-                seen_hashes.add(h)
-                dst = build_dest_base(per_root_folder, rel, label if not PRESERVE_STRUCTURE else "", PRESERVE_STRUCTURE)
-                ensure_dir(os.path.dirname(dst))
-                shutil.copy2(abs_p, dst)
-                copied += 1
-            copied_by_root_summary[label] = copied
+    # Global outputs
+    if WRITE_GLOBAL_COMMON_ANY:
+        base = os.path.join(matching_common_folder, "global_common_any")
+        all_paths = set()
+        for s in per_root_common_any.values():
+            all_paths.update(s)
+        copy_many(list(all_paths), base, "")  # label comes from entry
 
-        # per-root summary report
-        per_root_report = {
-            "config_ref": "same-as-global",
-            "copied_by_root": copied_by_root_summary,
-            "roots": [os.path.basename(os.path.normpath(p)) or f"root{i+1}" for i, p in enumerate(input_dirs)],
-        }
-        write_yaml(os.path.join(PER_ROOT_BASE, REPORT_NAME), per_root_report)
+    if WRITE_GLOBAL_COMMON_ALL:
+        base = os.path.join(matching_common_folder, "global_common_all")
+        all_paths = set()
+        for s in per_root_common_all.values():
+            all_paths.update(s)
+        copy_many(list(all_paths), base, "")
+
+    # Pairwise outputs
+    pairwise_summary: Dict[str, int] = {}
+    if WRITE_PAIRWISE_COMMON:
+        for (la, lb), keys in pairwise_keys.items():
+            base = os.path.join(matching_common_folder, "pairwise", f"{la}__{lb}")
+            # collect actual files for these keys from both roots
+            paths = []
+            for k in keys:
+                # pick any file from la with key k
+                idx_a = labels.index(la)
+                idx_b = labels.index(lb)
+                if (idx_a, k) in by_root_by_key:
+                    paths.append(by_root_by_key[(idx_a, k)][0]["abs"])
+                if (idx_b, k) in by_root_by_key:
+                    paths.append(by_root_by_key[(idx_b, k)][0]["abs"])
+            pairwise_summary[f"{la}__{lb}"] = copy_many(paths, base, "")
+
+    # Simple YAML report
+    report = {
+        "config": {
+            "require_same_name": REQUIRE_SAME_NAME,
+            "require_same_identifier": REQUIRE_SAME_IDENTIFIER,
+            "tags_match_mode": TAGS_MATCH_MODE,
+            "tags_intersect_min": TAGS_INTERSECT_MIN,
+            "tags_required": TAGS_REQUIRED,
+            "case_insensitive": CASE_INSENSITIVE_COMPARE,
+            "field_paths": FIELD_PATHS,
+            "match_by_filename": MATCH_BY_FILENAME,
+            "preserve_structure": PRESERVE_STRUCTURE,
+            "enable_content_check": ENABLE_CONTENT_CHECK,
+            "content_mode": CONTENT_MODE if ENABLE_CONTENT_CHECK else "none",
+            "similarity_threshold": SIMILARITY_THRESHOLD if (ENABLE_CONTENT_CHECK and CONTENT_MODE == 'threshold') else None,
+        },
+        "stats": {
+            "roots": labels,
+            "pairwise_buckets": sorted(list(pairwise_keys.keys())),
+        },
+        "per_root_summary": per_root_summary,
+        "pairwise_summary": pairwise_summary,
+    }
+    write_yaml(os.path.join(matching_common_folder, REPORT_NAME), report)
 
     print("Done.")
-    print(f"  Roots                 : {len(input_dirs)}")
-    print(f"  Pairs compared        : {total_pairs}")
-    if WRITE_GLOBAL_COMMON:
-        print(f"  Global copies         : {copied_global} -> {matching_common_folder}")
-    if WRITE_PER_ROOT_COMMON:
-        print(f"  Per-root base         : {PER_ROOT_BASE}")
-        for lbl, cnt in copied_by_root_summary.items():
-            print(f"    {lbl}: {cnt} files")
+    print(f"  Roots: {len(labels)}")
+    print(f"  Wrote per-root buckets under: {os.path.join(matching_common_folder, 'per_root')}")
+    if WRITE_GLOBAL_COMMON_ANY:
+        print(f"  Global any : {os.path.join(matching_common_folder, 'global_common_any')}")
+    if WRITE_GLOBAL_COMMON_ALL:
+        print(f"  Global all : {os.path.join(matching_common_folder, 'global_common_all')}")
+    if WRITE_PAIRWISE_COMMON:
+        print(f"  Pairwise   : {os.path.join(matching_common_folder, 'pairwise')}")
+    print(f"  Report     : {os.path.join(matching_common_folder, REPORT_NAME)}")
+
 
 if __name__ == "__main__":
     main()
