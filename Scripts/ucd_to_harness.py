@@ -25,6 +25,7 @@ Usage:
 
 Requires:
   pip install pyyaml
+  python Scripts/ucd_to_harness.py --input raw_files/ucd-0822.json --out harness_out --org my_org --project my_project
 """
 
 import argparse
