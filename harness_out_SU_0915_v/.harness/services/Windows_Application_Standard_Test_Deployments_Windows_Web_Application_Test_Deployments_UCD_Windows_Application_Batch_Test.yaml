@@ -14,5 +14,5 @@ service:
     type: Custom
     spec:
       variables: []
-  orgIdentifier: my_org
-  projectIdentifier: my_project
+  orgIdentifier: default_v
+  projectIdentifier: UCDharness_v

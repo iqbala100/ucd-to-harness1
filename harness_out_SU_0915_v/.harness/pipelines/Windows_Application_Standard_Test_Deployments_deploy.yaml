@@ -1,8 +1,8 @@
 pipeline:
   name: Windows Application (Standard) Test Deployments deploy
   identifier: Windows_Application_Standard_Test_Deployments_deploy
-  orgIdentifier: my_org
-  projectIdentifier: my_project
+  orgIdentifier: default_v
+  projectIdentifier: UCDharness_v
   tags:
     bsa: Developer Experience and Platform
     org: Infrastructure and Operations
