@@ -1,0 +1,14 @@
+On line number 8, Missing property "failureStrategies".
+On line number 13, Value is not accepted. Valid values: "Kubernetes", "NativeHelm", "Ssh", "WinR...
+On line number 34, Missing property "failureStrategies".
+On line number 39, Value is not accepted. Valid values: "Kubernetes", "NativeHelm", "Ssh", "WinR...
+On line number 60, Missing property "failureStrategies".
+On line number 86, Missing property "failureStrategies".
+On line number 112, Missing property "failureStrategies".
+On line number 138, Missing property "failureStrategies".
+On line number 164, Missing property "failureStrategies".
+On line number 169, Value is not accepted. Valid values: "Kubernetes", "NativeHelm", "Ssh", "WinR...
+On line number 190, Missing property "failureStrategies".
+On line number 195, Value is not accepted. Valid values: "Kubernetes", "NativeHelm", "Ssh", "WinR...
+On line number 216, Missing property "failureStrategies".
+On line number 242, Missing property "failureStrategies".
