@@ -2,7 +2,7 @@ pipeline:
   name: Informatica PowerCenter deploy
   identifier: Informatica_PowerCenter_deploy
   orgIdentifier: default
-  projectIdentifier: UCDharnessimportyaml
+  projectIdentifier: UCDharnessimportyamlv
   tags:
     bsa: Enterprise Data Office
     org: Technology Enterprise Solutions
