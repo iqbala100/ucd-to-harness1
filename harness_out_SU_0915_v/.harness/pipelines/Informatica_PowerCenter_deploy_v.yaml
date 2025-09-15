@@ -16,7 +16,7 @@ pipeline:
       identifier: Deploy_1930_DPS_Deploy_Multiple_Deployment_Groups
       type: Deployment
       spec:
-        deploymentType: Custom
+        deploymentType: Kubernetes
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Deploy_Multiple_Deployment_Groups
         environment:
@@ -37,12 +37,24 @@ pipeline:
                   type: Inline
                   spec:
                     script: 'echo TODO: implement deployment'
+      failureStrategies:
+      - onFailure:
+          errors:
+          - AllErrors
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 1h
+              onTimeout:
+                action:
+                  type: Abort
+
   - stage:
       name: Deploy 1930_DPS_Folder_Migration
       identifier: Deploy_1930_DPS_Folder_Migration
       type: Deployment
       spec:
-        deploymentType: Custom
+        deploymentType: Kubernetes
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Folder_Migration
         environment:
@@ -63,12 +75,24 @@ pipeline:
                   type: Inline
                   spec:
                     script: 'echo TODO: implement deployment'
+      failureStrategies:
+      - onFailure:
+          errors:
+          - AllErrors
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 1h
+              onTimeout:
+                action:
+                  type: Abort
+
   - stage:
       name: Deploy 1930_DPS_Import_Objects
       identifier: Deploy_1930_DPS_Import_Objects
       type: Deployment
       spec:
-        deploymentType: Custom
+        deploymentType: Kubernetes
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Import_Objects
         environment:
@@ -89,12 +113,24 @@ pipeline:
                   type: Inline
                   spec:
                     script: 'echo TODO: implement deployment'
+      failureStrategies:
+      - onFailure:
+          errors:
+          - AllErrors
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 1h
+              onTimeout:
+                action:
+                  type: Abort
+
   - stage:
       name: Deploy 1930_Informatica_PowerCenter_DeploymentGroup
       identifier: Deploy_1930_Informatica_PowerCenter_DeploymentGroup
       type: Deployment
       spec:
-        deploymentType: Custom
+        deploymentType: Kubernetes
         service:
           serviceRef: Informatica_PowerCenter_1930_Informatica_PowerCenter_DeploymentGroup
         environment:
@@ -115,3 +151,14 @@ pipeline:
                   type: Inline
                   spec:
                     script: 'echo TODO: implement deployment'
+      failureStrategies:
+      - onFailure:
+          errors:
+          - AllErrors
+          action:
+            type: ManualIntervention
+            spec:
+              timeout: 1h
+              onTimeout:
+                action:
+                  type: Abort
