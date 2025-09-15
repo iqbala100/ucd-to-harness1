@@ -10,7 +10,7 @@ service:
     regulated: 'true'
     Informatica_Multiple_Deployment_Group: 'true'
   serviceDefinition:
-    type: kubernetes
+    type: ssh
     spec:
       variables: []
   orgIdentifier: default
