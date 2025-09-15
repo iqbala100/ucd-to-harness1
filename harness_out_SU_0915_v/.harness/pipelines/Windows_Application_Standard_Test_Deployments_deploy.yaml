@@ -1,7 +1,7 @@
 pipeline:
   name: Windows Application Standard Test Deployments deploy
   identifier: Windows_Application_Standard_Test_Deployments_deploy
-  orgIdentifier: default_v
+  orgIdentifier: default
   projectIdentifier: harnessimportv
   tags:
     bsa: Developer Experience and Platform
