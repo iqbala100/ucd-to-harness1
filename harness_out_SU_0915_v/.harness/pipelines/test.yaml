@@ -1,8 +1,8 @@
 pipeline:
   name: Windows Web Application Test Deployments deploy
   identifier: Windows_Web_Application_Test_Deployments_deploy
-  orgIdentifier: default
-  projectIdentifier: harnessimportv
+  orgIdentifier: default_v
+  projectIdentifier: UCDharness_v
   tags: {}
   stages:
     - stage:
@@ -10,7 +10,7 @@ pipeline:
         identifier: Deploy_PH37507_test
         type: Deployment
         spec:
-          deploymentType: kubernetes
+          deploymentType: WinRm
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_PH37507_test
           environment:
@@ -31,12 +31,18 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_COM
         identifier: Deploy_Windows_Web_Application_Test_Deployments_COM
         type: Deployment
         spec:
-          deploymentType: kubernetes
+          deploymentType: WinRm
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_Windows_Web_Application_Test_Deployments_COM
           environment:
@@ -57,6 +63,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_COM_MSI_Test_App
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_COM_MSI_Test_App
@@ -83,6 +95,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_COM_MSI_Test_Proxy
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_COM_MSI_Test_Proxy
@@ -109,6 +127,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_IIS_App_Restart_Test
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_IIS_App_Restart_Test
@@ -135,6 +159,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_IIS_Site_Restart_Test
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_IIS_Site_Restart_Test
@@ -161,12 +191,18 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
         type: Deployment
         spec:
-          deploymentType: kubernetes
+          deploymentType: WinRm
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
           environment:
@@ -187,12 +223,18 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_Windows_Config_Test
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Config_Test
         type: Deployment
         spec:
-          deploymentType: Custom
+          deploymentType: WinRm
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_Windows_Web_Application_Test_Deployments_UCD_Windows_Config_Test
           environment:
@@ -213,6 +255,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_UCD_Windows_Web_App_Test
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Web_App_Test
@@ -239,6 +287,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
     - stage:
         name: Deploy Windows_Web_Application_Test_Deployments_Windows_Service
         identifier: Deploy_Windows_Web_Application_Test_Deployments_Windows_Service
@@ -265,3 +319,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: "echo TODO: implement deployment"
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
