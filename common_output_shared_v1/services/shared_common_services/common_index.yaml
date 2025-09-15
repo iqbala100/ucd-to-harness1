@@ -1,0 +1,164 @@
+category: services
+shared_folder: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_shared_v1\services\shared_common_services
+roots:
+- index: 0
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG1\.harness\services
+- index: 1
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG2\.harness\services
+- index: 2
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG3\.harness\services
+- index: 3
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness\services
+- index: 4
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness\services
+- index: 5
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\services
+matching_basis: Common when YAML share the same (name, identifier) AND identical content.
+config:
+  case_insensitive: true
+  require_both_fields: true
+  require_identical_content: true
+  content_compare_mode: hash
+  ignore_order_in_content: true
+  field_paths:
+    name:
+    - service.name
+    - name
+    - metadata.name
+    identifier:
+    - service.identifier
+    - identifier
+    - metadata.identifier
+    - id
+  file_naming: base filename only; collisions get ' (2)', ' (3)' suffixes
+counts:
+  total_yaml_seen: 20
+  usable_yaml: 20
+  skipped_missing_name_or_identifier: 0
+  distinct_name_identifier_pairs: 14
+  groups_common_any: 6
+  groups_shared_common: 0
+  files_copied: 6
+groups_common_any:
+- name: informatica_deployment_group
+  identifier: informatica_deployment_group
+  cluster_id: 5fdadb48f5ac4fe63d2b09c5e0049d3f71dfe3a52e412f3b644bcf0f0c38daab
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 0
+    src_rel: Informatica_Deployment_Group.yaml
+    src_base: Informatica_Deployment_Group.yaml
+    saved_filename: Informatica_Deployment_Group.yaml
+  - root_label: .harness
+    root_index: 5
+    src_rel: Informatica_Deployment_Group.yaml
+    src_base: Informatica_Deployment_Group.yaml
+    saved_filename: null
+- name: windows_config_deploy
+  identifier: windows_config_deploy
+  cluster_id: a6fb83b6c2a56f409ac986ad2d976e97694ddd26b5004e6c8df4fe9f46157342
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 1
+    src_rel: Windows_Config_Deploy.yaml
+    src_base: Windows_Config_Deploy.yaml
+    saved_filename: Windows_Config_Deploy.yaml
+  - root_label: .harness
+    root_index: 4
+    src_rel: Windows_Config_Deploy.yaml
+    src_base: Windows_Config_Deploy.yaml
+    saved_filename: null
+- name: windows_service
+  identifier: windows_service
+  cluster_id: ca0291c99316fd990d8cd2a001c69761425b5872d83c7655ed8b7e040409df88
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 1
+    src_rel: Windows_Service.yaml
+    src_base: Windows_Service.yaml
+    saved_filename: Windows_Service.yaml
+  - root_label: .harness
+    root_index: 4
+    src_rel: Windows_Service.yaml
+    src_base: Windows_Service.yaml
+    saved_filename: null
+- name: nitro_app
+  identifier: nitro_app
+  cluster_id: d43da5b464400a10ba7a4994d737078bac238836d7145434523934ea510d5441
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 2
+    src_rel: Nitro_App.yaml
+    src_base: Nitro_App.yaml
+    saved_filename: Nitro_App.yaml
+  - root_label: .harness
+    root_index: 3
+    src_rel: Nitro_App.yaml
+    src_base: Nitro_App.yaml
+    saved_filename: null
+- name: nitro_web
+  identifier: nitro_web
+  cluster_id: 683b7f9412c7eaf48d9f754e6879806f594f1f1be53167e43457d00fd3db95cf
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 2
+    src_rel: Nitro_Web.yaml
+    src_base: Nitro_Web.yaml
+    saved_filename: Nitro_Web.yaml
+  - root_label: .harness
+    root_index: 3
+    src_rel: Nitro_Web.yaml
+    src_base: Nitro_Web.yaml
+    saved_filename: null
+- name: nitro_zero_downtime
+  identifier: nitro_zero_downtime
+  cluster_id: ec05269665513e0554a4ab434ebd4fc53e0bab30803667e7cf18e900665b90bd
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 2
+    src_rel: Nitro_Zero_Downtime.yaml
+    src_base: Nitro_Zero_Downtime.yaml
+    saved_filename: Nitro_Zero_Downtime.yaml
+  - root_label: .harness
+    root_index: 3
+    src_rel: Nitro_Zero_Downtime.yaml
+    src_base: Nitro_Zero_Downtime.yaml
+    saved_filename: null
+groups_shared_common: []
+copied_files:
+- saved_filename: Informatica_Deployment_Group.yaml
+  from_root: .harness
+  src_rel: Informatica_Deployment_Group.yaml
+- saved_filename: Windows_Config_Deploy.yaml
+  from_root: .harness
+  src_rel: Windows_Config_Deploy.yaml
+- saved_filename: Windows_Service.yaml
+  from_root: .harness
+  src_rel: Windows_Service.yaml
+- saved_filename: Nitro_App.yaml
+  from_root: .harness
+  src_rel: Nitro_App.yaml
+- saved_filename: Nitro_Web.yaml
+  from_root: .harness
+  src_rel: Nitro_Web.yaml
+- saved_filename: Nitro_Zero_Downtime.yaml
+  from_root: .harness
+  src_rel: Nitro_Zero_Downtime.yaml

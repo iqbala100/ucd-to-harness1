@@ -43,7 +43,7 @@ SERVICES_DIRS = [
     r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\services",
 ]
 
-OUTPUT_BASE = r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_shared"
+OUTPUT_BASE = r"C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_shared_v1"
 CLEAN_DEST = False
 
 CASE_INSENSITIVE_COMPARE = True

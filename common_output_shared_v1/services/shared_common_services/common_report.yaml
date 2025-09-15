@@ -1,0 +1,14 @@
+category: services
+shared_folder: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_shared_v1\services\shared_common_services
+summary:
+  total_yaml_seen: 20
+  usable_yaml: 20
+  skipped_missing_name_or_identifier: 0
+  distinct_name_identifier_pairs: 14
+  groups_common_any: 6
+  groups_shared_common: 0
+  files_copied: 6
+notes:
+- Copied filenames keep ONLY the original base name.
+- If two different files would have the same name, a numeric suffix is added.
+- See common_index.yaml for exact saved filenames and sources.
