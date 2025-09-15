@@ -1,0 +1,10 @@
+service:
+  name: Windows_Config_Deploy
+  identifier: Windows_Config_Deploy
+  orgIdentifier: my_org
+  projectIdentifier: my_project
+  tags:
+    Windows_Config_Deploy: 'true'
+  serviceDefinition:
+    type: WinRm
+    spec: {}

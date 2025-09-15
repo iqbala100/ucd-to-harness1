@@ -1,0 +1,69 @@
+category: pipelines
+shared_folder: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\common_output_shared\pipelines\shared_common_pipelines
+roots:
+- index: 0
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG1\.harness\pipelines
+- index: 1
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG2\.harness\pipelines
+- index: 2
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG3\.harness\pipelines
+- index: 3
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG4\.harness\pipelines
+- index: 4
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG5\.harness\pipelines
+- index: 5
+  label: .harness
+  path: C:\Users\iqahmad\Desktop\RFP\GitHubRepo\ucd-to-harness1\harness_out_RG6\.harness\pipelines
+matching_basis: Common when YAML share the same (name, identifier) AND identical content.
+config:
+  case_insensitive: true
+  require_both_fields: true
+  require_identical_content: true
+  content_compare_mode: hash
+  ignore_order_in_content: true
+  field_paths:
+    name:
+    - pipeline.name
+    - name
+    - metadata.name
+    identifier:
+    - pipeline.identifier
+    - identifier
+    - metadata.identifier
+    - id
+  file_naming: base filename only; collisions get ' (2)', ' (3)' suffixes
+counts:
+  total_yaml_seen: 7
+  usable_yaml: 7
+  skipped_missing_name_or_identifier: 0
+  distinct_name_identifier_pairs: 6
+  groups_common_any: 1
+  groups_shared_common: 0
+  files_copied: 1
+groups_common_any:
+- name: informatica powercenter qpqbg - deploy
+  identifier: informatica_powercenter_qpqbg_deploy
+  cluster_id: b14a7699222f8b0137fa9a663d2b31dafb4167705a635316c27e47affe8395d1
+  roots_present:
+  - .harness
+  files:
+  - root_label: .harness
+    root_index: 0
+    src_rel: Informatica_PowerCenter_qpqbg_deploy.yaml
+    src_base: Informatica_PowerCenter_qpqbg_deploy.yaml
+    saved_filename: Informatica_PowerCenter_qpqbg_deploy.yaml
+  - root_label: .harness
+    root_index: 3
+    src_rel: Informatica_PowerCenter_qpqbg_deploy.yaml
+    src_base: Informatica_PowerCenter_qpqbg_deploy.yaml
+    saved_filename: null
+groups_shared_common: []
+copied_files:
+- saved_filename: Informatica_PowerCenter_qpqbg_deploy.yaml
+  from_root: .harness
+  src_rel: Informatica_PowerCenter_qpqbg_deploy.yaml
