@@ -1,8 +1,8 @@
 service:
   name: Nitro_App
   identifier: Nitro_App
-  orgIdentifier: my_org
-  projectIdentifier: my_project
+  orgIdentifier: default
+  projectIdentifier: harnessimportv
   tags:
     Nitro_App: 'true'
   serviceDefinition:
