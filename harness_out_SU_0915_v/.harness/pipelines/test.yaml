@@ -10,7 +10,7 @@ pipeline:
         identifier: Deploy_PH37507_test
         type: Deployment
         spec:
-          deploymentType: Custom
+          deploymentType: kubernetes
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_PH37507_test
           environment:
@@ -36,7 +36,7 @@ pipeline:
         identifier: Deploy_Windows_Web_Application_Test_Deployments_COM
         type: Deployment
         spec:
-          deploymentType: Custom
+          deploymentType: kubernetes
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_Windows_Web_Application_Test_Deployments_COM
           environment:
@@ -166,7 +166,7 @@ pipeline:
         identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
         type: Deployment
         spec:
-          deploymentType: Custom
+          deploymentType: kubernetes
           service:
             serviceRef: Windows_Web_Application_Test_Deployments_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
           environment:
