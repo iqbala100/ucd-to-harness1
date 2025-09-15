@@ -1,8 +1,8 @@
 pipeline:
   name: Informatica PowerCenter deploy
   identifier: Informatica_PowerCenter_deploy
-  orgIdentifier: defaultv
-  projectIdentifier: UCDharnessimportyamlv
+  orgIdentifier: default
+  projectIdentifier: UCDharnessimportyaml
   tags:
     bsa: Enterprise Data Office
     org: Technology Enterprise Solutions
@@ -20,7 +20,7 @@ pipeline:
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Deploy_Multiple_Deployment_Groups
         environment:
-          environmentRef: <+input>
+          environmentRef: &lt;+input&gt;
           deployToAll: true
           infrastructureDefinitions:
           - identifier: input
@@ -58,7 +58,7 @@ pipeline:
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Folder_Migration
         environment:
-          environmentRef: <+input>
+          environmentRef: &lt;+input&gt;
           deployToAll: true
           infrastructureDefinitions:
           - identifier: input
@@ -96,7 +96,7 @@ pipeline:
         service:
           serviceRef: Informatica_PowerCenter_1930_DPS_Import_Objects
         environment:
-          environmentRef: <+input>
+          environmentRef: &lt;+input&gt;
           deployToAll: true
           infrastructureDefinitions:
           - identifier: input
@@ -134,7 +134,7 @@ pipeline:
         service:
           serviceRef: Informatica_PowerCenter_1930_Informatica_PowerCenter_DeploymentGroup
         environment:
-          environmentRef: <+input>
+          environmentRef: &lt;+input&gt;
           deployToAll: true
           infrastructureDefinitions:
           - identifier: input
