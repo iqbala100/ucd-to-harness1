@@ -10,8 +10,8 @@ service:
     regulated: 'true'
     Informatica_Folder_Migration: 'true'
   serviceDefinition:
-    type: Custom
+    type: AwsLambda
     spec:
       variables: []
   orgIdentifier: default
-  projectIdentifier: harnessimportv
+  projectIdentifier: UCDharnessimportyaml
