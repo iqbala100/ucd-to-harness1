@@ -2,7 +2,7 @@ pipeline:
   name: Windows-Batch Test Deployments deploy
   identifier: Windows_Batch_Test_Deployments_deploy
   orgIdentifier: default
-  projectIdentifier: harnessimportv
+  projectIdentifier: UCDharnessimportyaml
   tags: {}
   stages:
   - stage:
