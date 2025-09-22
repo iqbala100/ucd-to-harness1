@@ -10,7 +10,7 @@ pipeline:
       identifier: Deploy_Windows_Web_Application_Test_Deployments_COM
       type: Deployment
       spec:
-        deploymentType: WinRm
+        deploymentType: AWS_SAM
         service:
           serviceRef: Windows_Batch_Test_Deployments_Windows_Web_Application_Test_Deployments_COM
         environment:
@@ -42,7 +42,7 @@ pipeline:
       identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
       type: Deployment
       spec:
-        deploymentType: WinRm
+        deploymentType: AWS_SAM
         service:
           serviceRef: Windows_Batch_Test_Deployments_Windows_Web_Application_Test_Deployments_UCD_Windows_Application_Batch_Test
         environment:
@@ -74,7 +74,7 @@ pipeline:
       identifier: Deploy_Windows_Web_Application_Test_Deployments_UCD_Windows_Config_Test
       type: Deployment
       spec:
-        deploymentType: WinRm
+        deploymentType: AWS_SAM
         service:
           serviceRef: Windows_Batch_Test_Deployments_Windows_Web_Application_Test_Deployments_UCD_Windows_Config_Test
         environment:
@@ -106,7 +106,7 @@ pipeline:
       identifier: Deploy_Windows_Web_Application_Test_Deployments_Windows_Service
       type: Deployment
       spec:
-        deploymentType: WinRm
+        deploymentType: AWS_SAM
         service:
           serviceRef: Windows_Batch_Test_Deployments_Windows_Web_Application_Test_Deployments_Windows_Service
         environment:
