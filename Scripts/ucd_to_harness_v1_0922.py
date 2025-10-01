@@ -28,6 +28,7 @@ Examples:
   python Scripts/ucd_to_harness.py \
     --input ucd_input_files/a.json,ucd_input_files/b.json \
     --out harness_out --org my_org --project my_project
+    END
 """
 import os, re, sys, json, glob, argparse
 from typing import Any, Dict, List, Optional, Tuple
